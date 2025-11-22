@@ -351,6 +351,122 @@ main {
 }
 /*testimonials*/
 
+
+/*nossos clientes*/
+/* Seção principal do carrossel */
+        .carousel-section {
+            padding: 4rem 1rem; /* py-16 sm:py-24 bg-white */
+            background-color: #ffffff;
+            text-align: center;
+        }
+
+        .carousel-container {
+            max-width: 1200px; /* max-w-7xl */
+            margin: 0 auto; /* mx-auto */
+            padding: 0 1rem; /* px-4 sm:px-6 lg:px-8 */
+        }
+
+        /* Título da seção */
+        .section-title {
+            font-size: 2rem; /* text-3xl */
+            font-weight: 800; /* font-extrabold */
+            color: #1a202c; /* text-gray-900 */
+            letter-spacing: -0.025em; /* tracking-tight */
+            margin-bottom: 1.5rem; /* mb-6 */
+            border-radius: 0.5rem; /* rounded-lg (opcional, dependendo do visual exato) */
+        }
+
+        @media (min-width: 640px) { /* sm:text-4xl */
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .section-description {
+            font-size: 1.25rem; /* text-xl */
+            color: #6b7280; /* text-gray-500 */
+            margin-bottom: 3rem; /* mb-12 */
+        }
+
+        /* ------------------ Estilos do Carrossel ------------------ */
+
+        /* 1. O Container principal que cria o "palco" para o carrossel */
+        .logo-carousel-wrapper {
+            overflow: hidden; /* Esconde tudo que sair do limite do container */
+            height: 6rem; /* h-24 */
+            position: relative;
+            /* Máscara de desvanecimento */
+            mask-image: linear-gradient(
+                to right,
+                rgba(0, 0, 0, 0) 0%, /* Totalmente transparente no início */
+                rgba(0, 0, 0, 1) 15%, /* Começa a aparecer aos 15% */
+                rgba(0, 0, 0, 1) 85%, /* Fica visível até 85% */
+                rgba(0, 0, 0, 0) 100% /* Totalmente transparente no final */
+            );
+        }
+
+        /* 2. O wrapper dos logos que será animado */
+        .logo-carousel-track {
+            display: flex;
+            width: fit-content; /* Permite que o conteúdo seja maior que o container */
+            animation: scroll-logos 30s linear infinite; /* Aplica a animação */
+        }
+
+        /* 3. Define a animação de rolagem contínua */
+        @keyframes scroll-logos {
+            from {
+                transform: translateX(0); /* Começa na posição 0 */
+            }
+            to {
+                /* Desloca a largura de um conjunto de logos (metade do track total) */
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Efeito de pausa ao passar o mouse */
+        .logo-carousel-wrapper:hover .logo-carousel-track {
+            animation-play-state: paused;
+        }
+
+        /* Estilo para cada item do logo */
+        .logo-item {
+            width: 12rem; /* Largura fixa para cada logo no desktop */
+            flex-shrink: 0; /* Impede que o item encolha */
+            padding: 0 2rem; /* Espaçamento entre os logos */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-item img {
+            max-width: 100%;
+            height: auto;
+            opacity: 0.6; /* Deixa os logos um pouco mais sutis */
+            filter: grayscale(100%); /* Transforma em preto e branco */
+            transition: opacity 0.3s, filter 0.3s;
+        }
+
+        .logo-item img:hover {
+            opacity: 1; /* Retorna a opacidade no hover */
+            filter: grayscale(0%); /* Retorna a cor no hover */
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            .logo-item {
+                width: 8rem; /* Reduz a largura do logo em mobile */
+            }
+            .section-description {
+                font-size: 1rem; /* Ajusta o tamanho da fonte para mobile */
+            }
+        }
+
+        .carousel-hint {
+            margin-top: 2rem; /* mt-8 */
+            font-size: 0.875rem; /* text-sm */
+            color: #9ca3af; /* text-gray-400 */
+        }
+
 /*Footer*/
 .footer-content{
     display: flex;
