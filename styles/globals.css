@@ -351,6 +351,193 @@ main {
 }
 /*testimonials*/
 
+/*container*/
+.container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        /* Título */
+        .titulo-secao {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+        }
+
+        /* ------------------ Carrossel (Componente Principal) ------------------ */
+
+        .carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* 1. Wrapper que limita a visualização e controla o overflow */
+        .carousel-track-container {
+            overflow: hidden;
+            border-radius: 1rem;
+            padding: 1rem 0;
+        }
+
+        /* 2. Track que contém todos os itens e é animado via JavaScript */
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* 3. Estilo de Cada Card (Item do Carrossel) */
+        .carousel-card {
+            min-width: 100%; /* Cada card ocupa 100% da largura do container em mobile */
+            flex-shrink: 0;
+            margin: 0 1rem;
+            background-color: #ffffff;
+            border: 1px solid var(--cor-borda);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        /* Imagem */
+        .card-image-wrapper {
+            background-color: #555; /* Fundo escuro para a imagem como na referência */
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .card-image-label {
+             position: absolute;
+             bottom: 0;
+             width: 100%;
+             background-color: var(--cor-primaria);
+             color: var(--cor-texto-escuro);
+             padding: 0.75rem 0;
+             font-size: 1.25rem;
+             font-weight: 600;
+             text-transform: uppercase;
+        }
+
+        /* Botões de Navegação (Setas) */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(calc(-50% - 1rem)); /* Ajusta para centralizar no card, com offset do label */
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            color: var(--cor-texto-escuro);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            z-index: 10;
+            height: 3rem;
+            width: 3rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background: var(--cor-primaria);
+            color: #ffffff;
+        }
+
+        .btn-prev {
+            left: 0;
+        }
+
+        .btn-next {
+            right: 0;
+        }
+
+        /* Pontos de Navegação Inferior */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            height: 0.5rem;
+            width: 0.5rem;
+            background-color: var(--cor-borda);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--cor-primaria);
+            transform: scale(1.2);
+        }
+
+        /* Botão CTA Central */
+        .cta-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background-color: var(--cor-secundaria);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 4px 10px rgba(51, 163, 74, 0.4);
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background-color: #278d38;
+            transform: translateY(-2px);
+        }
+
+        /* ------------------ Responsividade (Desktop/Tablet) ------------------ */
+
+        @media (min-width: 768px) {
+            /* No desktop, exibe todos os 3 cards */
+            .carousel-track {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+                transform: none !important; /* Desabilita a translação do carrossel no desktop */
+            }
+
+            .carousel-card {
+                min-width: auto; /* Permite que o grid defina a largura */
+                margin: 0;
+                /* Remove a borda do card, já que o container já tem uma separação visual */
+                border: none; 
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+            
+            /* Oculta os botões de navegação e os pontos no desktop */
+            .carousel-btn, .carousel-dots {
+                display: none;
+            }
+            
+            /* Garante que o track-container não precise de overflow, mas mantemos o padding vertical */
+            .carousel-track-container {
+                overflow: visible;
+                padding: 0;
+            }
+        }
+
 
 /*nossos clientes*/
 /* Seção principal do carrossel */
@@ -398,9 +585,9 @@ main {
             /* Máscara de desvanecimento */
             mask-image: linear-gradient(
                 to right,
-                rgba(0, 0, 0, 0) 0%, /* Totalmente transparente no início */
-                rgba(0, 0, 0, 1) 15%, /* Começa a aparecer aos 15% */
-                rgba(0, 0, 0, 1) 85%, /* Fica visível até 85% */
+                rgba(0, 0, 0, 0) 10%, /* Totalmente transparente no início */
+                rgba(0, 0, 0, 1) 45%, /* Começa a aparecer aos 45% */
+                rgba(0, 0, 0, 1) 95%, /* Fica visível até 95% */
                 rgba(0, 0, 0, 0) 100% /* Totalmente transparente no final */
             );
         }
@@ -541,4 +728,7 @@ main {
     .copyright{
         font-size: 0.8rem;
     }
+
+
+    
 }
